@@ -1,8 +1,7 @@
-// src/assets/components/Navbar.tsx
-
 import { useState } from "react";
 import { Stethoscope, Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; // Adjust path as needed
 
 interface NavbarProps {
   showAuthButtons?: boolean;
@@ -11,6 +10,8 @@ interface NavbarProps {
 export default function Navbar({ showAuthButtons = true }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -20,19 +21,22 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
   };
 
   const handleLinkClick = (id?: string) => {
-    // Jika ada id, scroll ke section. Jika tidak, scroll ke atas.
     if (location.pathname === "/" && id) {
       scrollToSection(id);
     } else if (location.pathname === "/" && !id) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (id) {
-      // Pindah halaman dulu, lalu tambahkan hash
-      window.location.href = `/#${id}`;
+      navigate(`/#${id}`);
     } else {
-      // Pindah halaman ke root
-      window.location.href = "/";
+      navigate("/");
     }
     setIsOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setIsOpen(false);
+    navigate("/");
   };
 
   return (
@@ -54,8 +58,9 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               e.preventDefault();
               handleLinkClick();
             }}
-            className={`text-gray-600 hover:text-blue-500 ${location.pathname === "/" ? "text-blue-500" : ""
-              }`}
+            className={`text-gray-600 hover:text-blue-500 ${
+              location.pathname === "/" ? "text-blue-500" : ""
+            }`}
           >
             Home
           </button>
@@ -71,14 +76,25 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
             Cara Pakai
           </button>
 
-          {/* Tombol Masuk */}
+          {/* Auth Buttons */}
           {showAuthButtons && (
-            <Link
-              to="/login"
-              className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
-            >
-              Masuk
-            </Link>
+            <>
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
+                >
+                  Masuk
+                </Link>
+              )}
+            </>
           )}
         </div>
 
@@ -107,8 +123,9 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick();
               }}
-              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${location.pathname === "/" ? "text-blue-500" : ""
-                }`}
+              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${
+                location.pathname === "/" ? "text-blue-500" : ""
+              }`}
             >
               Home
             </button>
@@ -122,13 +139,24 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               Cara Pakai
             </button>
             {showAuthButtons && (
-              <Link
-                to="/login"
-                className="mt-2 inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition text-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Masuk
-              </Link>
+              <>
+                {isAuthenticated ? (
+                  <button
+                    onClick={handleLogout}
+                    className="mt-2 inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition text-center"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="mt-2 inline-block bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition text-center"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Masuk
+                  </Link>
+                )}
+              </>
             )}
           </div>
         </div>
