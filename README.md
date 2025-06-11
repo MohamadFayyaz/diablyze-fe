@@ -79,6 +79,7 @@ Screenshot Project:
 <br>
 <div align="center">
   <p><strong>[Main Page]</strong></p>
-  <img src="https://github.com/user-attachments/assets/1a8d20d3-33a4-45f9-b33f-64d8f2807a4b" alt="Main-1" />
-  <img src="https://github.com/user-attachments/assets/27eff4fa-7c0c-4a72-8927-ca751ea4fbda" alt="Main-2" />
+   <img src="https://github.com/user-attachments/assets/27eff4fa-7c0c-4a72-8927-ca751ea4fbda" alt="Main-1" />
+  <img src="https://github.com/user-attachments/assets/1a8d20d3-33a4-45f9-b33f-64d8f2807a4b" alt="Main-2" />
+
 </div>
