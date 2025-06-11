@@ -49,7 +49,9 @@ Setelah semua dependensi terinstal, aplikasi siap dijalankan:
     
 4.  Buka browser web favorit dan kunjungi alamat http://localhost:5173/ (atau alamat lain yang diberikan di konsol).
 
-Aplikasi "Diablyze-fe" sekarang akan terlihat berjalan di browser.
+Aplikasi "Diablyze" sekarang akan terlihat berjalan di browser.
+
+namun
 
 5. Untuk dapat menggunakan fitur pastikan juga menginstal dan menjalankan github repositori ini (Bagian Backend-nya):
 ```bash
