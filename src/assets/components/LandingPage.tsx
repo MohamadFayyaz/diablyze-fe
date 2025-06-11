@@ -1,5 +1,3 @@
-// src/assets/components/LandingPage.tsx
-
 import type { FC } from "react";
 import { Heart } from "lucide-react";
 
@@ -119,7 +117,6 @@ const LandingPage: FC = () => {
             Features We Provide
           </h2>
           <div className="grid gap-12 md:grid-cols-3">
-            {/* Fitur 1 (tanpa bg-white) */}
             <div className="p-6 rounded-2xl shadow-lg hover:shadow-2xl transition">
               <h3 className="text-2xl font-semibold mb-3">Deteksi Mudah</h3>
               <p className="text-gray-500 font-bold leading-relaxed">
@@ -127,7 +124,6 @@ const LandingPage: FC = () => {
               </p>
             </div>
 
-            {/* Fitur 2 (tanpa bg-white) */}
             <div className="p-6 rounded-2xl shadow-lg hover:shadow-2xl transition">
               <h3 className="text-2xl font-semibold mb-3">Klasifikasi Resiko</h3>
               <p className="text-gray-500 font-bold leading-relaxed">
@@ -135,7 +131,6 @@ const LandingPage: FC = () => {
               </p>
             </div>
 
-            {/* Fitur 3 (tanpa bg-white) */}
             <div className="p-6 rounded-2xl shadow-lg hover:shadow-2xl transition">
               <h3 className="text-2xl font-semibold mb-3">Rekomendasi Awal</h3>
               <p className="text-gray-500 font-bold leading-relaxed">
@@ -147,7 +142,7 @@ const LandingPage: FC = () => {
       </section>
 
       {/* ========================================= */}
-      {/* About Section (full-width, tanpa bg-white) */}
+      {/* About Section */}
       {/* ========================================= */}
       <section className="w-full ">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
