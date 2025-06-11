@@ -1,54 +1,57 @@
-# React + TypeScript + Vite
+# Diablyze: Early Detection of Diabetes with Artificial Neural Network (ANN)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Diablyze adalah aplikasi berbasis web yang dirancang untuk membantu deteksi dini penyakit diabetes menggunakan metode Artificial Neural Network (ANN). Proyek ini dibangun menggunakan **React**, **Vite**, dan **TypeScript**.
 
-Currently, two official plugins are available:
+## 🚀 Fitur Utama
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 Prediksi diabetes berdasarkan data kesehatan pengguna.
+- 🤖 Model ANN terintegrasi untuk prediksi cepat dan akurat.
+- 🧩 UI modern dan responsif berbasis React + TypeScript.
 
-## Expanding the ESLint configuration
+## 🛠️ Teknologi yang Digunakan
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React + Vite + TypeScript
+- **Styling**: Tailwind CSS 
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 1. Persiapan Awal
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Sebelum memulai, pastikan perangkat lunak berikut sudah terinstal di sistem:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* *Node.js*: Pastikan memiliki Node.js versi LTS (Long Term Support) terbaru. Node.js akan secara otomatis menginstal npm (Node Package Manager). Unduh di [nodejs.org](https://nodejs.org/).
+* *Git*: Git sangat membantu untuk mengkloning repositori. Unduh di [git-scm.com](https://git-scm.com/).
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## 📦 Instalasi
+
+1. **Clone repository ini:**
+
+   ```bash
+   git clone https://github.com/username/diablyze.git
+   cd diablyze
+
+## 2. Menjalankan Aplikasi
+
+Setelah semua dependensi terinstal, aplikasi siap dijalankan:
+1. ```bash
+   npm install
+
+2.  Masih di Terminal/Command Prompt, dan di dalam direktori proyek, jalankan perintah ini:
+    ```bash
+    npm run dev
+
+3.  Akan terlihat output di konsol yang menunjukkan alamat lokal aplikasi berjalan. Biasanya, mirip dengan:
+    
+    VITE v5.x.x ready in Xms
+
+      ➜ Local:   http://localhost:5173/
+      ➜ Network: use --host to expose
+      ➜ press h + enter to show help
+    
+4.  Buka browser web favorit dan kunjungi alamat http://localhost:5173/ (atau alamat lain yang diberikan di konsol).
+
+Aplikasi "Diablyze-fe" sekarang akan terlihat berjalan di browser.
+
+5. Untuk dapat menggunakan fitur pastikan juga menginstal dan menjalankan github repositori ini (Bagian Backend-nya):
+```bash
+https://github.com/grnyoel/Diablyze-API
+
