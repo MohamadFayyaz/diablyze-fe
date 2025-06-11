@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stethoscope, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext"; // Adjust path as needed
 
@@ -44,10 +44,11 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <Stethoscope className="h-8 w-8 text-blue-500" />
-          <span className="ml-2 text-2xl font-bold text-blue-500">
-            Diablyze
-          </span>
+          <img
+            src="/images/logo.png"
+            alt="Logo"
+            className="flex-shrink-0 h-6 sm:h-8 md:h-10 lg:h-12 xl:h-16 w-auto object-contain"
+          />
         </Link>
 
         {/* Menu Desktop */}
@@ -58,9 +59,8 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               e.preventDefault();
               handleLinkClick();
             }}
-            className={`text-gray-600 hover:text-blue-500 ${
-              location.pathname === "/" ? "text-blue-500" : ""
-            }`}
+            className={`text-gray-600 hover:text-blue-500 ${location.pathname === "/" ? "text-blue-500" : ""
+              }`}
           >
             Home
           </button>
@@ -123,9 +123,8 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick();
               }}
-              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${
-                location.pathname === "/" ? "text-blue-500" : ""
-              }`}
+              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${location.pathname === "/" ? "text-blue-500" : ""
+                }`}
             >
               Home
             </button>
