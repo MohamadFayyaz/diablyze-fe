@@ -10,12 +10,16 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  // Fungsi Show Password
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await authService.login({ email, password });
       login(response.data.token);
-      navigate("/");
+      navigate("/input");
     } catch (err) {
       setError("Email atau password salah");
     }
@@ -24,9 +28,9 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto px-6 py-12 flex flex-col lg:flex-row items-stretch justify-between gap-8 relative z-10">
-        {/* Kiri - Intro & Link + Bubble Background */}
+        {/* Intro & Link + Bubble Background */}
         <div className="relative w-full lg:w-1/2 flex justify-center mt-10 lg:items-start">
-          {/* Bubble jadi background */}
+          {/* Bubble background */}
           <img
             src="/images/bubble-1.png"
             alt="Bubbles"
@@ -53,10 +57,10 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Kanan - Form Login */}
+        {/* Form Login */}
         <div className="w-full lg:w-1/2 flex items-center justify-center">
           <div className="max-w-md w-full overflow-hidden p-8">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-6">
               Selamat Datang!
             </h2>
 
@@ -72,20 +76,30 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Masukkan email"
                   required
                 />
               </div>
 
-              <div>
+              <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
                   placeholder="••••••••"
                   required
+                />
+                <img
+                  src={
+                    showPassword
+                      ? "/images/eye-up-icon.png"
+                      : "/images/eye-icon.png"
+                  }
+                  alt="Toggle Password Visibility"
+                  onClick={toggleShowPassword}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-5 cursor-pointer opacity-100 hover:opacity-100"
                 />
               </div>
 

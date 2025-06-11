@@ -5,6 +5,9 @@ import Navbar from "./assets/components/Navbar";
 import LandingPage from "./assets/components/LandingPage";
 import Login from "./assets/pages/auth/Login";
 import Register from "./assets/pages/auth/Register";
+import Input from "./assets/pages/Input";
+import ProtectedRoute from "./assets/components/ProtectedRoute";
+
 import "./App.css";
 // import "./index.css";
 
@@ -25,6 +28,10 @@ const App: FC = () => {
 
           {/* Register Page */}
           <Route path="/register" element={<Register />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/input" element={<Input />} />
+          </Route>
         </Routes>
       </main>
 

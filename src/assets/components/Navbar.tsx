@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext"; // Adjust path as needed
+import { useAuth } from "../../context/AuthContext";
 
 interface NavbarProps {
   showAuthButtons?: boolean;
@@ -59,8 +59,9 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               e.preventDefault();
               handleLinkClick();
             }}
-            className={`text-gray-600 hover:text-blue-500 ${location.pathname === "/" ? "text-blue-500" : ""
-              }`}
+            className={`text-gray-600 hover:text-blue-500 ${
+              location.pathname === "/" ? "text-blue-500" : ""
+            }`}
           >
             Home
           </button>
@@ -76,20 +77,26 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
             Cara Pakai
           </button>
 
+          {isAuthenticated && (
+            <Link to="/input" className="text-gray-600 hover:text-blue-500">
+              Deteksi
+            </Link>
+          )}
+
           {/* Auth Buttons */}
           {showAuthButtons && (
             <>
               {isAuthenticated ? (
                 <button
                   onClick={handleLogout}
-                  className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition"
+                  className="bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] text-white px-6 py-2 rounded-full hover:bg-red-600 transition"
                 >
-                  Logout
+                  Keluar
                 </button>
               ) : (
                 <Link
                   to="/login"
-                  className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
+                  className="bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] text-white px-6 py-2 rounded-full transition hover:bg-[#3A8EF6] hover:from-none hover:to-none hover:bg-none"
                 >
                   Masuk
                 </Link>
@@ -123,10 +130,20 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick();
               }}
-              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${location.pathname === "/" ? "text-blue-500" : ""
-                }`}
+              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${
+                location.pathname === "/" ? "text-blue-500" : ""
+              }`}
             >
               Home
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick("cara-pakai");
+              }}
+              className="text-gray-700 hover:text-blue-500 text-lg text-left"
+            >
+              Cara Pakai
             </button>
             <button
               onClick={(e) => {

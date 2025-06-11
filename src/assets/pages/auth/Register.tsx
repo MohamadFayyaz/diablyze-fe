@@ -11,6 +11,10 @@ export default function Register() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  // Fungsi Show Password
+  const [showPassword, setShowPassword] = useState(false);
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -18,7 +22,7 @@ export default function Register() {
       login(response.data.token);
       navigate("/"); // Redirect to home after registration
     } catch (err) {
-      setError("Registration failed. Please try again.");
+      setError("Registrasi gagal. Silahkan coba lagi.");
     }
   };
 
@@ -36,7 +40,7 @@ export default function Register() {
           {/* Teks di atas bubble */}
           <div className="relative text-center lg:text-left z-10">
             <p className="text-black-100 mb-6 text-4xl font-bold">
-              Masuk untuk
+              Daftar untuk
               <br />
               mulai mendeteksi
             </p>
@@ -56,7 +60,7 @@ export default function Register() {
         {/* Kanan - Form Login */}
         <div className="w-full lg:w-1/2 flex items-center justify-center">
           <div className="max-w-md w-full overflow-hidden p-8">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-6">
               Selamat Datang!
             </h2>
 
@@ -87,20 +91,30 @@ export default function Register() {
                 />
               </div>
 
-              <div>
+              <div className="relative">
                 <input
-                  type="password"
-                  placeholder="••••••••"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-12"
+                  placeholder="••••••••"
                   required
+                />
+                <img
+                  src={
+                    showPassword
+                      ? "/images/eye-up-icon.png"
+                      : "/images/eye-icon.png"
+                  }
+                  alt="Toggle Password Visibility"
+                  onClick={toggleShowPassword}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-5 cursor-pointer opacity-100 hover:opacity-100"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition"
               >
                 Daftar
               </button>
