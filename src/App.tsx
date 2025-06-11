@@ -1,4 +1,3 @@
-// import React from "react";
 import type { FC } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./assets/components/Navbar";
@@ -9,7 +8,6 @@ import Input from "./assets/pages/Input";
 import ProtectedRoute from "./assets/components/ProtectedRoute";
 
 import "./App.css";
-// import "./index.css";
 
 const App: FC = () => {
   return (
@@ -20,8 +18,8 @@ const App: FC = () => {
       {/* Konten Utama */}
       <main className="flex-grow">
         <Routes>
+          {/* Landing Page */}
           <Route path="/" element={<LandingPage />} />
-          {/* Jika nanti butuh login/register, tambahkan di sini */}
 
           {/* Login Page */}
           <Route path="/login" element={<Login />} />
@@ -38,10 +36,10 @@ const App: FC = () => {
       {/* Footer */}
       <footer className="border-t">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 py-8 flex flex-col md:flex-row justify-between items-center text-gray-600">
-          {/* Kiri: Copyright */}
+          {/* Copyright */}
           <p className="text-sm md:text-base">&copy; 2025 Diablyze</p>
 
-          {/* Kanan: Hak cipta & tautan */}
+          {/* Hak cipta & tautan */}
           <div className="mt-4 md:mt-0 space-x-4 text-sm md:text-base">
             <span>All Rights Reserved</span>
             <a href="/#" className="text-blue-500 hover:underline">
