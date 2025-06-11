@@ -57,3 +57,28 @@ namun
 ```bash
 https://github.com/grnyoel/Diablyze-API
 
+```
+
+Screenshot Project:
+<div align="center">
+  <p><strong>[Landingpage]</strong></p>
+  <img src="https://github.com/user-attachments/assets/5a4a7239-4961-447e-88ba-c737d1e73690" alt="Landingpage-1" />
+  <img src="https://github.com/user-attachments/assets/0efed555-6419-41f5-90bd-e3f8a7e1ce97" alt="Landingpage-2" />
+  <img src="https://github.com/user-attachments/assets/19568ac2-352b-4ec0-ac56-e0ff654194a8" alt="Landingpage-3" />
+</div>
+<br>
+<div align="center">
+  <p><strong>[Login]</strong></p>
+  <img src="https://github.com/user-attachments/assets/d04f0df3-5a15-4109-8305-b4756b7f0d3a" alt="Login" />
+</div>
+<br>
+<div align="center">
+  <p><strong>[Register]</strong></p>
+  <img src="https://github.com/user-attachments/assets/5e8d4ffa-4373-44f6-933e-1d07b5670f0c" alt="Register" />
+</div>
+<br>
+<div align="center">
+  <p><strong>[Main Page]</strong></p>
+  <img src="https://github.com/user-attachments/assets/1a8d20d3-33a4-45f9-b33f-64d8f2807a4b" alt="Main-1" />
+  <img src="https://github.com/user-attachments/assets/27eff4fa-7c0c-4a72-8927-ca751ea4fbda" alt="Main-2" />
+</div>
