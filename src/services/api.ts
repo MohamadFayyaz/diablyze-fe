@@ -36,4 +36,10 @@ export const authService = {
   },
 };
 
+export const predictService = {
+  predict: async (data: { gender: string; age: string; hypertension: string, heartDisease: string, smoking: string, bmi: string, hba1c: string, glucose: string }) => {
+    return api.post("/api/predict", data);
+  },
+};
+
 export default api;

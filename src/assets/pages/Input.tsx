@@ -1,8 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { predictService } from "../../services/api";
+
+interface FormData {
+  gender: string;
+  age: string;
+  hypertension: string;
+  bmi: string;
+  heartDisease: string;
+  glucose: string;
+  smoking: string;
+  hba1c: string;
+}
 
 export default function Input() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     gender: "",
     age: "",
     hypertension: "",
@@ -13,20 +25,91 @@ export default function Input() {
     hba1c: "",
   });
 
+  // pesan error validasi per-field dari server
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // hasil prediksi & pesan diagnostik
   const [result, setResult] = useState<string | null>(null);
+  const [diagnostic, setDiagnostic] = useState<string | null>(null);
+
+  // error umum dari server
+  const [error, setError] = useState<string>("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
+
+    // perbarui nilai field
     setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // hapus pesan error validasi untuk field ini
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+    setError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Connect  ML API
-    // For now, we simulate a positive result
-    setResult("POSITIF");
+
+    // destrukturisasi supaya tiap field ada dalam scope
+    const {
+      gender,
+      age,
+      hypertension,
+      bmi,
+      heartDisease,
+      glucose,
+      smoking,
+      hba1c,
+    } = formData;
+
+    // buat payload dengan key snake_case sesuai API
+    const payload = {
+      gender,
+      age,
+      hypertension,
+      heart_disease: heartDisease,
+      smoking_history: smoking,
+      bmi,
+      blood_glucose_level: glucose,
+      HbA1c_level: hba1c,
+    };
+
+    try {
+      // bersihkan result lama
+      setResult("");
+      setDiagnostic("");
+
+      // Panggil API
+      const response = await predictService.predict(payload);
+
+      // bersihkan error lama
+      setErrors({});
+      setError("");
+
+      // interpretasi hasil prediksi
+      const predictionText =
+        response.data.prediction === 1 ? "POSITIF" : "NEGATIF";
+
+      setResult(predictionText);
+      setDiagnostic(response.data.diagnostic);
+    } catch (err: any) {
+      // jika server mengembalikan array error validasi
+      const apiErrors: any[] = err.response?.data?.errors;
+      if (Array.isArray(apiErrors)) {
+        const fieldErrors = apiErrors.reduce<Record<string, string>>(
+          (acc, cur) => {
+            acc[cur.path] = cur.msg;
+            return acc;
+          },
+          {}
+        );
+        setErrors(fieldErrors);
+      } else {
+        // fallback error umum
+        setError("Server sedang gangguan");
+      }
+    }
   };
 
   return (
@@ -42,6 +125,12 @@ export default function Input() {
             <br />
             analisis kecerdasan buatan.
           </p>
+
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {error}
+            </div>
+          )}
 
           <form
             onSubmit={handleSubmit}
@@ -62,9 +151,14 @@ export default function Input() {
                     required
                   >
                     <option value="">Pilih Jenis Kelamin</option>
-                    <option value="male">Laki-laki</option>
-                    <option value="female">Perempuan</option>
+                    <option value="1">Laki-laki</option>
+                    <option value="0">Perempuan</option>
                   </select>
+                  {errors.gender && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.gender}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -80,6 +174,9 @@ export default function Input() {
                     placeholder="Tahun"
                     required
                   />
+                  {errors.age && (
+                    <p className="text-red-600 text-sm mt-1">{errors.age}</p>
+                  )}
                 </div>
 
                 <div>
@@ -94,9 +191,14 @@ export default function Input() {
                     required
                   >
                     <option value="">Pilih Status</option>
-                    <option value="yes">Ya</option>
-                    <option value="no">Tidak</option>
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
                   </select>
+                  {errors.hypertension && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.hypertension}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -113,6 +215,11 @@ export default function Input() {
                     step="0.1"
                     required
                   />
+                  {errors.bmi && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.bmi}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -130,9 +237,14 @@ export default function Input() {
                     required
                   >
                     <option value="">Pilih Status</option>
-                    <option value="yes">Ya</option>
-                    <option value="no">Tidak</option>
+                    <option value="1">Ya</option>
+                    <option value="0">Tidak</option>
                   </select>
+                  {errors.heart_disease && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.heart_disease}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -148,6 +260,11 @@ export default function Input() {
                     placeholder="mg/dL"
                     required
                   />
+                  {errors.blood_glucose_level && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.blood_glucose_level}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -162,10 +279,17 @@ export default function Input() {
                     required
                   >
                     <option value="">Pilih Status</option>
-                    <option value="never">Tidak Pernah</option>
-                    <option value="former">Pernah</option>
-                    <option value="current">Masih Merokok</option>
+                    <option value="0">Tidak Pernah</option>
+                    <option value="1">Pernah</option>
+                    <option value="2">Merokok Sekarang</option>
+                    <option value="3">Berhenti</option>
+                    <option value="4">Tidak Diketahui</option>
                   </select>
+                  {errors.smoking_history && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.smoking_history}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -182,6 +306,11 @@ export default function Input() {
                     step="0.1"
                     required
                   />
+                  {errors.HbA1c_level && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors.HbA1c_level}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -204,7 +333,7 @@ export default function Input() {
                 diabetes.
               </p>
               <p className="text-gray-600 mt-2">
-                Harap konsultasikan dengan dokter.
+                {diagnostic}
               </p>
               <Link
                 to="/"
