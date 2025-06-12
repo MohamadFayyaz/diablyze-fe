@@ -37,7 +37,7 @@ export const authService = {
 };
 
 export const predictService = {
-  predict: async (data: { gender: string; age: string; hypertension: string, heartDisease: string, smoking: string, bmi: string, hba1c: string, glucose: string }) => {
+  predict: async (data: { gender: string; age: string; hypertension: string, heart_disease: string, smoking_history: string, bmi: string, HbA1c_level: string, blood_glucose_level: string }) => {
     return api.post("/api/predict", data);
   },
 };

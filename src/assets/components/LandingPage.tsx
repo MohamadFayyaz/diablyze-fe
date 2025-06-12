@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Step {
   step: number;
@@ -68,7 +69,8 @@ const LandingPage: FC = () => {
           <p className="text-gray-500 font-semibold sm:text-lg md:text-xl mb-6">
             Memprediksi diabetes berdasarkan riwayat medis dan data demografis pasien.
           </p>
-          <button className="
+          <Link to="/input">
+            <button className="
             inline-flex items-center 
             bg-gradient-to-r from-[#3A8EF6] to-[#6F3AFA] 
             text-white 
@@ -78,9 +80,10 @@ const LandingPage: FC = () => {
             transition 
             font-bold
           ">
-            Mulai
-            <Heart className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
-          </button>
+              Mulai
+              <Heart className="ml-2 h-5 w-5 sm:h-6 sm:w-6" />
+            </button>
+          </Link>
         </div>
 
         {/* Gambar Ilustrasi Dokter */}
