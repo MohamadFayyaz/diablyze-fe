@@ -59,9 +59,8 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               e.preventDefault();
               handleLinkClick();
             }}
-            className={`text-gray-600 hover:text-blue-500 ${
-              location.pathname === "/" ? "text-blue-500" : ""
-            }`}
+            className={`text-gray-600 hover:text-blue-500 ${location.pathname === "/" ? "text-blue-500" : ""
+              }`}
           >
             Home
           </button>
@@ -130,20 +129,10 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
                 e.preventDefault();
                 handleLinkClick();
               }}
-              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${
-                location.pathname === "/" ? "text-blue-500" : ""
-              }`}
+              className={`text-gray-700 hover:text-blue-500 text-lg text-left ${location.pathname === "/" ? "text-blue-500" : ""
+                }`}
             >
               Home
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick("cara-pakai");
-              }}
-              className="text-gray-700 hover:text-blue-500 text-lg text-left"
-            >
-              Cara Pakai
             </button>
             <button
               onClick={(e) => {
