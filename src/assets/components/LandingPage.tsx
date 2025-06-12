@@ -60,7 +60,7 @@ const LandingPage: FC = () => {
         "
       >
         {/* Teks Judul, Deskripsi, dan Tombol */}
-        <div className="w-1/2 flex flex-col items-start text-left pr-4 sm:pr-8">
+        <div className="w-full sm:w-1/2 flex flex-col items-start text-left pr-4 sm:pr-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 leading-tight">
             <span className="text-blue-500">Solusi Mudah</span>
             <br />
@@ -87,7 +87,7 @@ const LandingPage: FC = () => {
         </div>
 
         {/* Gambar Ilustrasi Dokter */}
-        <div className="w-1/2 flex justify-center pl-4 sm:pl-8">
+        <div className="hidden sm:flex w-1/2 justify-center pl-4 sm:pl-8">
           <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
             <img
               src="/images/illustrasi-dokter.png"
